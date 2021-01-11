@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ViewBag.Title = "SupportTrackPRO"</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link rel="stylesheet" href="~/Content/Site.css"
+
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1>Support Options</h1>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if ((User.IsInRole("SupportTrackPROAdmin") == true) || (User.IsInRole("SupportManager")) == true)
+                {
+
+                    <hr />
+                    <p class="lead">Support Track PRO Site Subscription Administrator Only</p>
+                    <br />
+                    <p><a href="@Url.Action("Create", "SupportCompany")" class="btn btn-primary btn-lg">Create Company &raquo;</a></p>
+                    <p><a href="@Url.Action("Index", "SupportCompany")" class="btn btn-primary btn-lg">List Company &raquo;</a></p>
+
+                    <hr />
+                    <p class="lead">Support Manager Only</p>
+                    <br />
+                    <p><a href="@Url.Action("Create", "SupportProduct")" class="btn btn-primary btn-lg">Create Products &raquo;</a></p>
+                    <p><a href="@Url.Action("Index", "SupportProduct")" class="btn btn-primary btn-lg">List Products &raquo;</a></p>
+                    <p><a href="@Url.Action("Create", "SupportProvider")" class="btn btn-primary btn-lg">Create Providers &raquo;</a></p>
+                    <p><a href="@Url.Action("Index", "SupportProvider")" class="btn btn-primary btn-lg">List Providers &raquo;</a></p>
+
+                    <p><a href="@Url.Action("Update", "SupportCompany")" class="btn btn-primary btn-lg">Update Company Information &raquo;</a></p>
+                    <p><a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-lg">Register Support Manager/Provider/Customer &raquo;</a></p>
+
+                }
+
+                if ((User.IsInRole("SupportTrackPROAdmin")) || (User.IsInRole("SupportManager")) || (User.IsInRole("SupportProvider")))
+                {
+                    <hr />
+                    <p class="lead">Support Manager/Provider Only</p>
+                    <br />
+                    <p><a href="@Url.Action("NewWarrentyRegistration", "RegisteredWarrenty")" class="btn btn-primary btn-lg">Tickets &raquo;</a></p>
+                    <p><a href="@Url.Action("NewWarrentyRegistration", "RegisteredWarrenty")" class="btn btn-primary btn-lg">Warrenties &raquo;</a></p>
+                    <p><a href="@Url.Action("NewWarrentyRegistration", "RegisteredWarrenty")" class="btn btn-primary btn-lg">Customers &raquo;</a></p>
+                }
+
+                if ((User.IsInRole("SupportTrackPROAdmin")) || (User.IsInRole("SupportManager")) || (User.IsInRole("SupportProvider")) || (User.IsInRole("SupportCustomer")))
+                {
+                    <hr />
+                    <p class="lead">Customer Product Support</p>
+                    <br />
+                    <p><a href="@Url.Action("Index", "Customer")" class="btn btn-primary btn-lg btn-stpro-home">Update My User Profile &raquo;</a></p>
+                    <p><a href="@Url.Action("Create", "RegisteredWarranty")" class="btn btn-primary btn-lg btn-stpro-home">Register A Product Warrenty &raquo;</a></p>
+                    <p><a href="@Url.Action("Create", "SupportTicket")" class="btn btn-primary btn-lg btn-stpro-home">Support Requests - Create New &raquo;</a></p>
+                    <p><a href="@Url.Action("Index", "SupportTicket")" class="btn btn-primary btn-lg btn-stpro-home">Support Requests - Status &raquo;</a></p>
+                }
+            }
+        </div>
+    </body>
+</html>
+

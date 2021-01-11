@@ -35,6 +35,10 @@ namespace SupportTrackPRO.Data
         public DbSet<SupportCompany> SupportCompanies { get; set; }
         public DbSet<SupportProduct> SupportProducts { get; set; }
         public DbSet<SupportProvider> SupportProviders { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<RegisteredWarranty> RegisteredWarranties { get; set; }
+        public DbSet<SupportTicket> SupportTickets { get; set; }
+        public DbSet<SupportTicketLog> SupportTicketLogs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -47,6 +51,48 @@ namespace SupportTrackPRO.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+
+        //    Configuration.LazyLoadingEnabled = true;
+
+        //    modelBuilder
+        //    .Conventions
+        //        .Remove<PluralizingTableNameConvention>();
+
+        //    modelBuilder
+        //        .Configurations
+        //        .Add(new IdentityUserLoginConfiguration())
+        //        .Add(new IdentityUserRoleConfiguration());
+
+        //    var user = modelBuilder.Entity<ApplicationUser>().ToTable("AspNetUsers");
+
+        //    user.HasMany(u => u.Roles).WithRequired().HasForeignKey(ur => ur.UserId);
+        //    user.HasMany(u => u.Claims).WithRequired().HasForeignKey(uc => uc.UserId);
+        //    user.HasMany(u => u.Logins).WithRequired().HasForeignKey(ul => ul.UserId);
+        //    user.Property(u => u.UserName).IsRequired();
+
+        //    modelBuilder.Entity<IdentityUserRole>()
+        //        .HasKey(r => new { r.UserId, r.RoleId })
+        //        .ToTable("AspNetUserRoles");
+
+        //    modelBuilder.Entity<IdentityUserLogin>()
+        //        .HasKey(l => new { l.UserId, l.LoginProvider, l.ProviderKey })
+        //        .ToTable("AspNetUserLogins");
+
+        //    modelBuilder.Entity<IdentityUserClaim>()
+        //        .ToTable("AspNetUserClaims");
+
+        //    var role = modelBuilder.Entity<IdentityRole>()
+        //        .ToTable("AspNetRoles");
+        //    role.Property(r => r.Name).IsRequired();
+        //    role.HasMany(r => r.Users).WithRequired().HasForeignKey(ur => ur.RoleId);
+
+
+        //    modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //    modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+        //}
 
     }
 

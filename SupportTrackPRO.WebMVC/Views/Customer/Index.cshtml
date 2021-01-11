@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SupportTrackPRO.Models.CustomerList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="jumbotron">
+    <h2>Your Current Information</h2>
+    <br>
+    @foreach (var item in Model)
+    {
+        if (item.CustomerId == ViewBag.myCustomerId)
+        {
+            <table style="width: 80%;">
+                <tr style="border-bottom: 1px solid lightgray; border-top: 1px solid lightgray">
+                    <td>@Html.DisplayNameFor(model => model.ApplicationUserId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ApplicationUserId)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.Address1)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address1)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.Address2)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address2)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.City)</td>
+                    <td>@Html.DisplayFor(modelItem => item.City)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.State)</td>
+                    <td>@Html.DisplayFor(modelItem => item.State)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.ZipCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ZipCode)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.PhoneNumber1)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber1)</td>
+                </tr>
+
+                <tr style="border-bottom: 1px solid lightgray;">
+                    <td>@Html.DisplayNameFor(model => model.PhoneNumber2)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber2)</td>
+                </tr>
+            </table>
+        }
+    }
+    <br>
+    <br>
+    <a href="@Url.Action("Edit", "Customer", new { id = ViewBag.myCustomerId })" class="btn btn-primary btn-lg">Update Information</a>
+
+</div>

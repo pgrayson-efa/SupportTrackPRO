@@ -22,3 +22,76 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Everything below was added for Support Track PRO Most of it is copied from bootstrap.css */
+
+body {
+    background-color: black;
+}
+
+.btn {
+    color: gray;
+    background-color: darkred;
+}
+.btn-stpro-home {
+    width: 30%;
+}
+
+.jumbotron {
+    background-color: darkgray;
+    margin-top: 10px;
+}
+
+.h2-content-header {
+    color: black;
+}
+
+.h4-content-header {
+    color: black;
+}
+
+/* Change the color of the navbar */
+.navbar-inverse {
+    background-color: darkred;
+    border-color: #080808;
+}
+
+/* Change the color of the navbar brand only*/
+.navbar-inverse .navbar-brand {
+    color: black;
+}
+
+/* This code can change the color of the brand on mouse over. */
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+    color: white;
+    background-color: transparent;
+}
+
+/* This changes the way the navbar menus look */
+.navbar-inverse .navbar-text {
+    color: lightgray;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+    font-family: Arial;
+    font-size: 15px;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: white;
+}
+
+.table {
+    border: 1px solid white;
+}
+.tr {
+    border: 1px solid white;
+}
+.standard-dropdown {
+    width: 300px;
+}

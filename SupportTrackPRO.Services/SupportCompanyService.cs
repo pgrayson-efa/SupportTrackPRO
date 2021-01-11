@@ -12,9 +12,10 @@ namespace SupportTrackPRO.Services
     {
         private readonly Guid _userId;
 
-        public SupportCompanyService(Guid userId)
+        public SupportCompanyService(Guid userId, int mySupportCompanyId)
         {
             _userId = userId;
+            int _mySupportCompanyId = mySupportCompanyId;
         }
 
         public bool CreateSupportCompany(SupportCompanyCreate model)

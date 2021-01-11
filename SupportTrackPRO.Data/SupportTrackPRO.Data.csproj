@@ -54,24 +54,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202012161612449_Init.cs" />
-    <Compile Include="Migrations\202012161612449_Init.Designer.cs">
-      <DependentUpon>202012161612449_Init.cs</DependentUpon>
+    <Compile Include="Migrations\202101111850157_yay.cs" />
+    <Compile Include="Migrations\202101111850157_yay.Designer.cs">
+      <DependentUpon>202101111850157_yay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101112012559_whoohoo.cs" />
+    <Compile Include="Migrations\202101112012559_whoohoo.Designer.cs">
+      <DependentUpon>202101112012559_whoohoo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisteredWarranty.cs" />
     <Compile Include="SupportCompany.cs" />
     <Compile Include="SupportProduct.cs" />
     <Compile Include="SupportProvider.cs" />
+    <Compile Include="SupportTicket.cs" />
+    <Compile Include="SupportTicketLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012161612449_Init.resx">
-      <DependentUpon>202012161612449_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101111850157_yay.resx">
+      <DependentUpon>202101111850157_yay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101112012559_whoohoo.resx">
+      <DependentUpon>202101112012559_whoohoo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

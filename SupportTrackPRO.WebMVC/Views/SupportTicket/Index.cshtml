@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SupportTrackPRO.Models.SupportTicketList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Support Requests</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SupportTicketId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisteredWarrantyId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.SupportTicketId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RegisteredWarrantyId)
+    </td>
+    <td>
+        <!--
+    @Html.ActionLink("Edit", "Edit", new { id = item.SupportTicketId }) |
+    @Html.ActionLink("Details", "Details", new { id = item.SupportTicketId }) |
+    -->
+        @if ((item.Status == "Open") || (item.Status == "New"))
+        {
+            @Html.ActionLink("Cancel Request", "Delete", new { id = item.SupportTicketId })
+        }
+    </td>
+</tr>
+}
+
+</table>

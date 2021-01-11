@@ -54,9 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerDetail.cs" />
+    <Compile Include="CustomerEdit.cs" />
+    <Compile Include="CustomerCreate.cs" />
+    <Compile Include="CustomerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisteredWarrantyList.cs" />
+    <Compile Include="RegisteredWarrantyCreate.cs" />
     <Compile Include="SupportCompanyCreate.cs" />
     <Compile Include="SupportCompanyList.cs" />
+    <Compile Include="SupportProductCreate.cs" />
+    <Compile Include="SupportProductList.cs" />
+    <Compile Include="SupportProviderCreate.cs" />
+    <Compile Include="SupportProviderList.cs" />
+    <Compile Include="SupportTicketDetail.cs" />
+    <Compile Include="SupportTicketEdit.cs" />
+    <Compile Include="SupportTicketList.cs" />
+    <Compile Include="SupportTicketCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

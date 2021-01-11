@@ -1,12 +1,31 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Support Track PRO - Home";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Support Track PRO</h1>
+    <hr />
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Welcome @User.Identity.Name!!!</p>
+
+        <p><a href="@Url.Action("Support", "Home")" class="btn btn-primary btn-lg">Go To Support &raquo;</a></p>
+    }
+    else
+    {
+        <p class="lead">Please Click One Of The Following</p>
+        <h6>If you're a support provider, or a customer seeking support on a product, login below.</h6>
+
+        <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg btn-stpro-home">Login &raquo;</a></p>
+        <h6>If you're a new customer seeking warranty support on a product, please register below.</h6>
+        <p><a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-lg btn-stpro-home">Customer Registration &raquo;</a></p>
+        <h6>If you're a company seeing to subscribe to the SupportTrackPRO support platform to provide support to your customers, click below.</h6>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg btn-stpro-home">Support Company Subscription &raquo;</a></p>
+    }
 </div>
+
+<!--
 
 <div class="row">
     <div class="col-md-4">
@@ -29,3 +48,4 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+-->

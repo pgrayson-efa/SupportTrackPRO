@@ -7,13 +7,13 @@ namespace SupportTrackPRO.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class Init : IMigrationMetadata
+    public sealed partial class yay : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(yay));
         
         string IMigrationMetadata.Id
         {
-            get { return "202012161612449_Init"; }
+            get { return "202101111850157_yay"; }
         }
         
         string IMigrationMetadata.Source

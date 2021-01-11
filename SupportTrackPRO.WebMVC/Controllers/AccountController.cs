@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SupportTrackPRO.Data;
@@ -13,20 +16,43 @@ using SupportTrackPRO.WebMVC.Models;
 
 namespace SupportTrackPRO.WebMVC.Controllers
 {
+
     [Authorize]
     public class AccountController : Controller
     {
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
+
+        ApplicationDbContext context;
+
+        public bool VerifyMyUserRole(string myUserRole)
+        {
+            bool isInRole = User.IsInRole(myUserRole);
+            return isInRole;
+        }
+
+        public int ReturnMySupportCompanyId()
+        {
+            string myUserName = User.Identity.Name;
+
+            var tempctx = new ApplicationDbContext();
+            int mySupportCompanyId = tempctx.SupportProviders.Where(c => c.UserName == myUserName).Select(c => c.SupportCompanyId).FirstOrDefault();
+
+            return mySupportCompanyId;
+        }
 
         public AccountController()
         {
+            context = new ApplicationDbContext();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -53,11 +79,21 @@ namespace SupportTrackPRO.WebMVC.Controllers
             }
         }
 
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set { _roleManager = value; }
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -76,16 +112,42 @@ namespace SupportTrackPRO.WebMVC.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //
+                    // You can't access the role information directly in the controller to open views based on the users role
+                    // Ill have to use linq later to make calls directly to the roles table in the db to get that information.
+                    //
+                    //if (UserManager.IsInRole(User.Identity.GetUserId(), "SupportProvider") == true)
+                    //{
+                    //    return RedirectToAction("Provider", "Home");
+                    //}
+                    //bool isInRole = User.IsInRole("SupportProvider");
+                    //if (isInRole == true)
+                    //{
+                    //    return RedirectToAction("Provider", "Home");
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Support", "Home");
+                    //}
+                    if (VerifyMyUserRole("SupportManager")) { 
+                        return RedirectToAction("Support", "Home");
+                    }
+                    return RedirectToAction("Index", "Home");
+
+                //public static int MySupportCompanyId = GetMySupportCompanyId(UserManager.UserName);
+                // return RedirectToLocal(returnUrl);
+
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
+                    return RedirectToAction("Home", "Home");
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
@@ -140,7 +202,9 @@ namespace SupportTrackPRO.WebMVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("SupportTrackPROAdmin")).ToList(), "Name", "Name");
             return View();
+
         }
 
         //
@@ -152,24 +216,60 @@ namespace SupportTrackPRO.WebMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
+
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    //Assign Role to user Here       
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    //
+                    // Create empty record in the Customer table
+                    //
+                    //var newCustomer = new Customer() { ApplicationUserId = User.Identity.GetUserId() };
+                    //var accountHelper = new AccountHelper(); //added the helper class and method
+                    //Guid applicationUserId = accountHelper.ReturnApplicationUserId();
+
+                    //var newCustomer = new Customer(applicationUserId);
+
+                    //using (var tempCustomerDbContext = new ApplicationDbContext())
+                    //{
+                    //    tempCustomerDbContext.Customers.Add(newCustomer);
+                    //    int wasSuccessful = tempCustomerDbContext.SaveChanges();
+                    //}
+
+                    //if ((model.UserRoles == "SupportManager") || (model.UserRoles == "SupportProvider"))
+                    //{
+                    //    int mySupportCompanyId = ReturnMySupportCompanyId();
+                    //    ViewBag.mySupportCompanyId = mySupportCompanyId;
+                    //    return RedirectToAction("SupportProvider", "SupportProvider");
+                    //}
+
+                    //else
+                    //{
+                    //    return RedirectToAction("Support", "Home");
+                    //}
+
+                    return RedirectToAction("Support", "Home");
                 }
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("SupportTrackPROAdmin")).ToList(), "Name", "Name");
                 AddErrors(result);
+
             }
 
-            // If we got this far, something failed, redisplay form
+            // If we got this far, something failed, redisplay form    
             return View(model);
         }
 

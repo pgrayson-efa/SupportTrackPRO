@@ -44,11 +44,17 @@ template {
 }
 a {
   background-color: transparent;
+  color: darkgreen;
 }
-a:active,
+a:active {
+    outline: 0;
+    color: darkgreen;
+}
 a:hover {
   outline: 0;
+  color: white;
 }
+
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
@@ -4668,9 +4674,11 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: #222;
   border-color: #080808;
 }
+
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;
 }
+
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #fff;
@@ -4705,6 +4713,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #fff;
   background-color: #080808;
 }
+
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
     border-color: #080808;

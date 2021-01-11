@@ -168,9 +168,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SupportTicketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegisteredWarrantyController.cs" />
     <Compile Include="Controllers\SupportCompanyController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\SupportProductController.cs" />
+    <Compile Include="Controllers\SupportProviderController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,6 +243,23 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SupportCompany\Index.cshtml" />
     <Content Include="Views\SupportCompany\Create.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Home\Support.cshtml" />
+    <Content Include="Views\SupportProduct\Index.cshtml" />
+    <Content Include="Views\SupportProvider\Index.cshtml" />
+    <Content Include="Views\SupportProvider\Create.cshtml" />
+    <Content Include="Views\SupportProduct\Create.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\RegisteredWarranty\Index.cshtml" />
+    <Content Include="Views\RegisteredWarranty\Create.cshtml" />
+    <Content Include="Views\SupportTicket\Create.cshtml" />
+    <Content Include="Views\SupportTicket\Index.cshtml" />
+    <Content Include="Views\SupportTicket\Details.cshtml" />
+    <Content Include="Views\SupportTicket\Edit.cshtml" />
+    <Content Include="Views\SupportTicket\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

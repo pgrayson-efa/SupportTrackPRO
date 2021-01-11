@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SupportTrackPRO.Models.RegisteredWarrantyList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Registered Warrenties</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisteredWarrantyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupportCompanyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupportProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRegistered)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisteredWarrantyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupportCompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupportProductId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRegistered)
+        </td>
+        <!--
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+        -->
+    </tr>
+}
+
+</table>
