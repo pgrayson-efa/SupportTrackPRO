@@ -19,4 +19,4 @@ Trello Board : \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://trello.com/b/VCg6ZCBe/supporttrackpro
 
 Original Project Planning Document : \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://github.com/pgrayson-efa/SupportTrackPRO/SupportTrackPROProjectPlan.odt
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://github.com/pgrayson-efa/SupportTrackPRO/SupportTrackPROProjectPlan.pdf
