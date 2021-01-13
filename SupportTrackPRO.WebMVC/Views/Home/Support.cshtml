@@ -41,9 +41,9 @@
                     <hr />
                     <p class="lead">Support Manager/Provider Only</p>
                     <br />
-                    <p><a href="@Url.Action("NewWarrentyRegistration", "RegisteredWarrenty")" class="btn btn-primary btn-lg">Tickets &raquo;</a></p>
-                    <p><a href="@Url.Action("NewWarrentyRegistration", "RegisteredWarrenty")" class="btn btn-primary btn-lg">Warrenties &raquo;</a></p>
-                    <p><a href="@Url.Action("NewWarrentyRegistration", "RegisteredWarrenty")" class="btn btn-primary btn-lg">Customers &raquo;</a></p>
+                    <p><a href="@Url.Action("Support", "Home")" class="btn btn-primary btn-lg">Tickets &raquo;</a></p>
+                    <p><a href="@Url.Action("Support", "Home")" class="btn btn-primary btn-lg">Warrenties &raquo;</a></p>
+                    <p><a href="@Url.Action("Support", "Home")" class="btn btn-primary btn-lg">Customers &raquo;</a></p>
                 }
 
                 if ((User.IsInRole("SupportTrackPROAdmin")) || (User.IsInRole("SupportManager")) || (User.IsInRole("SupportProvider")) || (User.IsInRole("SupportCustomer")))

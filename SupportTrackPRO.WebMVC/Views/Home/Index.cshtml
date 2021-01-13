@@ -5,7 +5,8 @@
 <div class="jumbotron">
     <h1>Support Track PRO</h1>
     <hr />
-
+    <p>SupportTrackPRO is a subscribable service for small companies that have products that have warranties that they have to service.</p>
+    <hr />
     @if (User.Identity.IsAuthenticated)
     {
         <p>Welcome @User.Identity.Name!!!</p>
@@ -15,12 +16,12 @@
     else
     {
         <p class="lead">Please Click One Of The Following</p>
-        <h6>If you're a support provider, or a customer seeking support on a product, login below.</h6>
+        <h4>If you're a support provider, or a customer seeking support on a product, login below.</h4>
 
         <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg btn-stpro-home">Login &raquo;</a></p>
-        <h6>If you're a new customer seeking warranty support on a product, please register below.</h6>
+        <h4>If you're a new customer seeking warranty support on a product, please register below.</h4>
         <p><a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-lg btn-stpro-home">Customer Registration &raquo;</a></p>
-        <h6>If you're a company seeing to subscribe to the SupportTrackPRO support platform to provide support to your customers, click below.</h6>
+        <h4>If you're a company seeing to subscribe to the SupportTrackPRO support platform to provide support to your customers, click below.</h4>
         <p><a href="https://asp.net" class="btn btn-primary btn-lg btn-stpro-home">Support Company Subscription &raquo;</a></p>
     }
 </div>
